@@ -1,1 +1,137 @@
 
+1、用UML绘制出三种工厂模式的类结构图。
+
+
+2、深刻理解产品族和产品等级结构之间的关系。
+产品族：不同产品同一厂家生产
+产品等级结构：同一个产品不同产品厂家生产
+
+3、自主完成三种工厂模式的代码实现，理解简单工厂、工厂方法和抽象工厂的区别。
+简单工厂：
+package com.gperedu.vip.factory;
+
+//�򵥹�������
+interface Car {
+	public void driver();
+}
+
+class AudiCar implements Car {
+	public void driver() {
+		System.out.println("driver audi");
+	}
+}
+
+class BaoCar implements Car {
+	public void driver() {
+		System.out.println("driver baoshijie");
+	}
+}
+
+class CarFactory {
+	public static Car createCar(String car) {
+		Car c = null;
+		if ("audi".equals(car)) {
+			c = new AudiCar();
+		} else if ("baoshijie".equals(car)) {
+			c = new BaoCar();
+		}
+		return c;
+	}
+}
+
+public class SimpleFactoryTest {
+	public static void main(String[] args) {
+		Car car = CarFactory.createCar("audi");
+		car.driver();
+	}
+
+}
+
+工厂方法：
+package com.gperedu.vip.factory;
+
+interface FactoryMethod{
+	Car1 createCar();
+}
+interface Car1 {
+	public void driver();
+}
+
+class AudiCar1 implements Car1 {
+	public void driver() {
+		System.out.println("driver audi");
+	}
+}
+
+class BaoCar1 implements Car1 {
+	public void driver() {
+		System.out.println("driver baoshijie");
+	}
+}
+class AudiCarFactory implements FactoryMethod{
+	public  Car1 createCar(){
+		return new AudiCar1();
+	}	
+}
+class BaoCarFactory implements FactoryMethod {
+	public Car1 createCar() {
+		return new BaoCar1();
+	}	
+}
+
+public class FactoryMethodTest {
+	public static void main(String[] args){
+	FactoryMethod factory = new BaoCarFactory();
+    Car1 car1 = factory.createCar();
+    car1.driver();
+	}
+}
+
+抽象工厂：
+package com.gperedu.vip.factory;
+
+interface AbstractFactory {
+	Fridge createFridge();
+
+	AirCondition createAirCondition();
+
+}
+
+interface Fridge {
+	void ice();
+}
+
+interface AirCondition {
+	void cool();
+}
+
+class FridgeA implements Fridge {
+	public void ice() {
+		System.out.println("ice");
+	}
+}
+
+class AirConditionA implements AirCondition {
+	public void cool() {
+		System.out.println("cool");
+	}
+}
+
+class FactoryA implements AbstractFactory{
+	public Fridge createFridge(){
+		return new FridgeA();
+	}
+
+	public AirCondition createAirCondition(){
+		return new AirConditionA();
+	}
+}
+public class AbstractFactoryTest {
+	public static void main(String[] args) {
+		FactoryA factoryA = new FactoryA();
+		factoryA.createFridge().ice();
+		
+	}
+}
+
+
