@@ -182,6 +182,16 @@ throw new IllegalArgumentException("interface limit exceeded: " + var2.size());
 
 
 
+委派模式和策略模式的课后作业
+1、举例Spring源码中你见过的委派模式，并画出类关系图。
+DispatcherServlet 
+类图见文件：DispatcherServlet 类图
+2、利用策略模式重构一段业务代码。
+
+
+
+
+
 
 代理模式
 装饰者模式				适配器模式		
