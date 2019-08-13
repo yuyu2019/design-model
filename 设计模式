@@ -179,7 +179,7 @@ throw new IllegalArgumentException("interface limit exceeded: " + var2.size());
 直接做了65535的长度的校验，所以，JDK的动态代理要求，目标类实现的接口数量不能超过65535
 
 3、结合自身的业务场景用代理模式进行重构。
-
+见文件：代理模式业务重构
 
 
 委派模式和策略模式的课后作业
